@@ -26,6 +26,6 @@ app.use('/api/shop',require('./routers/shop'));
 app.use('/api/channel', require('./routers/channel'));
 
 // starting the server
-app.listen(3001, () => {
+app.listen(process.env.PORT || 5050, () => {
   console.log("Access to API by http://localhost:3001/api");
 });

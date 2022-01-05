@@ -21,9 +21,9 @@ app.use(cors({ origin: true}));
 //app.use(morgan('combined'));
 
 // defining an endpoint to return all tags
-app.use('/api/tag', require('./routers/tag'));
-app.use('/api/shop',require('./routers/shop'));
-app.use('/api/channel', require('./routers/channel'));
+app.use('/api/tag', require('./src/routers/tag'));
+app.use('/api/shop',require('./src/routers/shop'));
+app.use('/api/channel', require('./src/routers/channel'));
 
 // starting the server
 app.listen(process.env.PORT || 5050, () => {

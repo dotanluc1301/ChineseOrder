@@ -1,0 +1,29 @@
+const COLLECTION_TAG = 'tag';
+const COLLECTION_TAG_ATTRIBUTE_TAGNAME = 'name';
+const COLLECTION_TAG_ATTRIBUTE_ID = 'id'; 
+
+const COLLECTION_CHANNEL = 'channel';
+const COLLECTION_CHANNEL_ATTRIBUTE_CHANNELNAME = 'name';
+const COLLECTION_CHANNEL_ATTRIBUTE_ID = 'id'; 
+
+const COLLECTION_SHOP = 'shop';
+const COLLECTION_SHOP_ATTRIBUTE_SHOPNAME = 'name';
+const COLLECTION_SHOP_ATTRIBUTE_URL = 'url';
+const COLLECTION_SHOP_ATTRIBUTE_TAGS = 'tags';
+const COLLECTION_SHOP_ATTRIBUTE_CHANNEL = 'channel';
+const COLLECTION_SHOP_ATTRIBUTE_ID = 'id';
+
+module.exports =  {
+                    COLLECTION_TAG,
+                    COLLECTION_TAG_ATTRIBUTE_TAGNAME,
+                    COLLECTION_TAG_ATTRIBUTE_ID,
+                    COLLECTION_CHANNEL,
+                    COLLECTION_CHANNEL_ATTRIBUTE_CHANNELNAME,
+                    COLLECTION_CHANNEL_ATTRIBUTE_ID,
+                    COLLECTION_SHOP,
+                    COLLECTION_SHOP_ATTRIBUTE_SHOPNAME,
+                    COLLECTION_SHOP_ATTRIBUTE_URL,
+                    COLLECTION_SHOP_ATTRIBUTE_TAGS,
+                    COLLECTION_SHOP_ATTRIBUTE_CHANNEL,
+                    COLLECTION_SHOP_ATTRIBUTE_ID
+                  }

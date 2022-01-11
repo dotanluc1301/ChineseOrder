@@ -47,15 +47,28 @@ describe('tag', function() {
                   done();
                 });
   })
-  it('should return gloves detail',function(done) {
+  it('should return error tag name must not be number',function(done) {
     request(app).get('/1')
                 .then(function (res) {
                   expect(res.body).not.toBeNull();
                   expect(res.body.data.length).toBeNull();
                   
-                  
+                  expect(res.body.error).toContain(TAG_NAME_IS_NUMBER);
 
-                  expect(res.body.status).toBe('OK.');
+                  expect(res.body.status).toBe('BAD REAQUEST.');
+                  expect(res.body.error).toBe('');
+                  done();
+                });
+  })
+  it('should return error tag name must not be number',function(done) {
+    request(app).get('/qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm')
+                .then(function (res) {
+                  expect(res.body).not.toBeNull();
+                  expect(res.body.data.length).toBeNull();
+                  
+                  expect(res.body.error).toContain(TAG_NAME_IS_EXCEED_MAXLENGTH);
+
+                  expect(res.body.status).toBe('BAD REAQUEST.');
                   expect(res.body.error).toBe('');
                   done();
                 });

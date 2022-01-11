@@ -7,7 +7,6 @@ const { getTagValidation,
 const { validateResult } = require('../validation/validationError');
 const { getTags, getTag, addTag, setTag, deleteTag} = require('../db/tag');
 
-//HTTP GET: getting all tags
 router.get('/',async function(req, res, next){
   res.set('Access-Control-Allow-Origin','*');
   try{

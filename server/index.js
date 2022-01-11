@@ -28,6 +28,6 @@ app.use('/',swaggerUi.serve,
             swaggerUi.setup(require('./src/routers/swagger-doc'),{ explorer:true }));
 
 // starting the server
-app.listen(process.env.PORT || 5050, () => {
-  console.log("Access to API by http://localhost:5050");
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Access to API by http://localhost:3000");
 });

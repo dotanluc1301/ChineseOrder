@@ -6,7 +6,7 @@ const validateResult = async(req,res,next) => {
                                   .json({
                                           errors: errors.array().map(err => err.msg),
                                           status: 'BAD REQUEST.',
-                                          error: ''
+                                          error: '' 
                                         });
   next();
 }

@@ -7,7 +7,15 @@ const { getShopValidation,
 const { validateResult } = require('../validation/validationError');
 const { getShops, getShop, addShop, setShop, deleteShop} = require('../db/shop');
 
-//HTTP GET: getting all shops
+/**
+ * @swagger
+ *  /shop:
+ *    get:
+ *      tags:
+ *      - Shop
+ *      summary:  Getting all shops
+ *                Navigated by <domain>/api/shop
+ */
 router.get('/',async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -27,7 +35,24 @@ router.get('/',async function(req,res,next){
   }
 });
 
-//HTTP GET: getting specific shop by shop name
+/**
+ *  @swagger
+ *  /shop/{name}:
+ *    get:
+ *      tags:
+ *      - Shop
+ *      parameters: 
+ *      - name: name
+ *        in: path
+ *        description: the shop name
+ *        required: true
+ *      summary:  Getting specified shop defined by given name
+ *                Navigated by <domain>/api/shop/:name
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.get('/:name',getShopValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -54,7 +79,36 @@ router.get('/:name',getShopValidation,validateResult,async function(req,res,next
   }
 });
 
-//HTTP POST: add new shop
+/**
+ *  @swagger
+ *  /shop/:
+ *    post:
+ *      tags:
+ *      - Shop
+ *      parameters: 
+ *      - name: name
+ *        in: body
+ *        description: the tag name
+ *        required: true
+ *      - name: url
+ *        in: body
+ *        description: the url value
+ *        required: true
+ *      - name: tags
+ *        in: body
+ *        description: the tags value
+ *        required: true
+ *      - name: channel
+ *        in: body
+ *        description: the channel value
+ *        required: true
+ *      summary:  Create new shop by given value
+ *                Navigated by <domain>/api/shop
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.post('/',addShopValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -82,11 +136,45 @@ router.post('/',addShopValidation,validateResult,async function(req,res,next){
   }
 });
 
-//HTTP PUT: modify a single shop
+/**
+ *  @swagger
+ *  /shop/:
+ *    put:
+ *      tags:
+ *      - Shop
+ *      parameters: 
+ *      - name: id
+ *        in: body
+ *        description: the shop id
+ *        required: true
+ *      - name: name
+ *        in: body
+ *        description: the shop name
+ *        required: true
+ *      - name: url
+ *        in: body
+ *        description: the url value
+ *        required: true
+ *      - name: tags
+ *        in: body
+ *        description: the tags value
+ *        required: true
+ *      - name: channel
+ *        in: body
+ *        description: the channel value
+ *        required: true
+ *      summary:  Edit existing shop by given name
+ *                Navigated by <domain>/api/shop
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.put('/', setShopValidation, validateResult, async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
-    await setShop(req.body.name,
+    await setShop(req.body.id,
+                  req.body.name,
                   req.body.url,
                   req.body.tags,
                   req.body.channel);
@@ -103,7 +191,24 @@ router.put('/', setShopValidation, validateResult, async function(req,res,next){
   }
 });
 
-//HTTP DELETE: remove a single shop
+/**
+ *  @swagger
+ *  /shop/:
+ *    delete:
+ *      tags:
+ *      - Shop
+ *      parameters: 
+ *      - name: id
+ *        in: path
+ *        description: the shop id
+ *        required: true
+ *      summary:  Delete shop by given id
+ *                Navigated by <domain>/api/shop/:id
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.delete('/:id',deleteShopValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{

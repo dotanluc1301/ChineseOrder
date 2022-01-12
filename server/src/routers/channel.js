@@ -7,7 +7,15 @@ const { getChannelValidation,
 const { validateResult } = require('../validation/validationError');
 const { getChannels, getChannel, addChannel, setChannel, deleteChannel } = require('../db/channel');
 
-//HTTP GET: getting all channels
+/**
+ * @swagger
+ *  /channel:
+ *    get:
+ *      tags:
+ *      - Channel
+ *      summary:  Getting all channels
+ *                Navigated by <domain>/api/channel
+ */
 router.get('/',async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -26,7 +34,24 @@ router.get('/',async function(req,res,next){
   }
 });
 
-//HTTP GET: getting specific channel by channel id
+/**
+ *  @swagger
+ *  /channel/{channelName}:
+ *    get:
+ *      tags:
+ *      - Channel
+ *      parameters: 
+ *      - name: channelName
+ *        in: path
+ *        description: the channel name
+ *        required: true
+ *      summary:  Getting specified channel defined by given name
+ *                Navigated by <domain>/api/channel/:channelName  
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.get('/:channelName',getChannelValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -53,7 +78,24 @@ router.get('/:channelName',getChannelValidation,validateResult,async function(re
   }
 });
 
-//HTTP POST: add new channel
+/**
+ *  @swagger
+ *  /channel/:
+ *    post:
+ *      tags:
+ *      - Channel
+ *      parameters: 
+ *      - name: channelName
+ *        in: body
+ *        description: the channel name
+ *        required: true
+ *      summary:  Create new channel by given name
+ *                Navigated by <domain>/api/channel
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.post('/',addChannelValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -78,7 +120,28 @@ router.post('/',addChannelValidation,validateResult,async function(req,res,next)
   }
 });
 
-//HTTP PUT: modify a single channel
+/**
+ *  @swagger
+ *  /channel/:
+ *    put:
+ *      tags:
+ *      - Channel
+ *      parameters: 
+ *      - name: channelName
+ *        in: body
+ *        description: the channel name
+ *        required: true
+ *      - name: id
+ *        in: body
+ *        description: the channel id
+ *        required: true
+ *      summary:  Edit existing channel by given name
+ *                Navigated by <domain>/api/channel
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.put('/',setChannelValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -96,7 +159,24 @@ router.put('/',setChannelValidation,validateResult,async function(req,res,next){
   }
 });
 
-//HTTP DELETE: remove a single channel
+/**
+ *  @swagger
+ *  /channel/:
+ *    delete:
+ *      tags:
+ *      - Channel
+ *      parameters: 
+ *      - name: id
+ *        in: path
+ *        description: the channel id
+ *        required: true
+ *      summary:  Delete channel by given id
+ *                Navigated by <domain>/api/channel/:id
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.delete('/:id',deleteChannelValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{

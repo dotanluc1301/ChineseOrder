@@ -45,7 +45,7 @@ async function addShop(shopName, url, tags, channel){
                           .set(shopValue,{merge: true});
 }
 
-async function setShop(shopId,shopName, url, tags, channel){
+async function setShop(shopId, shopName, url, tags, channel){
   const shopValue = { 
                       [COLLECTION_SHOP_ATTRIBUTE_SHOPNAME]: shopName,
                       [COLLECTION_SHOP_ATTRIBUTE_URL]: url,

@@ -7,6 +7,15 @@ const { getTagValidation,
 const { validateResult } = require('../validation/validationError');
 const { getTags, getTag, addTag, setTag, deleteTag} = require('../db/tag');
 
+/**
+ * @swagger
+ *  /tag:
+ *    get:
+ *      tags:
+ *      - Tag
+ *      summary:  Getting all tags
+ *                Navigated by <domain>/api/tag
+ */
 router.get('/',async function(req, res, next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -26,7 +35,24 @@ router.get('/',async function(req, res, next){
   }
 });
 
-//HTTP GET: getting specific tag by tag name
+/**
+ *  @swagger
+ *  /tag/{name}:
+ *    get:
+ *      tags:
+ *      - Tag
+ *      parameters: 
+ *      - name: name
+ *        in: path
+ *        description: the tag name
+ *        required: true
+ *      summary:  Getting specified tag defined by given name
+ *                Navigated by <domain>/api/tag/:name
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.get('/:name', getTagValidation, validateResult, async function(req, res, next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -52,8 +78,24 @@ router.get('/:name', getTagValidation, validateResult, async function(req, res, 
                         });
   }
 });
-
-//HTTP POST: add new tag
+/**
+ *  @swagger
+ *  /tag/:
+ *    post:
+ *      tags:
+ *      - Tag
+ *      parameters: 
+ *      - name: name
+ *        in: body
+ *        description: the tag name
+ *        required: true
+ *      summary:  Create new tag by given name
+ *                Navigated by <domain>/api/tag
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.post('/',addTagValidation, validateResult,async function(req, res, next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -78,7 +120,28 @@ router.post('/',addTagValidation, validateResult,async function(req, res, next){
   }
 });
 
-//HTTP PUT: modify a single tag
+/**
+ *  @swagger
+ *  /tag/:
+ *    put:
+ *      tags:
+ *      - Tag
+ *      parameters: 
+ *      - name: id
+ *        in: body
+ *        description: the tag id
+ *        required: true
+ *      - name: name
+ *        in: body
+ *        description: the tag name
+ *        required: true
+ *      summary:  Edit existing tag by given name
+ *                Navigated by <domain>/api/tag/:id
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.put('/',setTagValidation,validateResult,async function(req, res, next){
   res.set('Access-Control-Allow-Origin','*');
   try{
@@ -96,7 +159,23 @@ router.put('/',setTagValidation,validateResult,async function(req, res, next){
   }
 });
 
-//HTTP DELETE: remove a single tag
+/**
+ *  @swagger
+ *  /tag/:
+ *    delete:
+ *      tags:
+ *      - Tag
+ *      parameters: 
+ *      - name: id
+ *        in: path
+ *        description: the tag id
+ *        required: true
+ *      summary: Delete tag by given id
+ *      responses:
+ *        200:
+ *          description: Success
+ *          content: application/json
+ */
 router.delete('/:id',deleteTagValidation,validateResult,async function(req, res, next){
   res.set('Access-Control-Allow-Origin','*');
   try{

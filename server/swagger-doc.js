@@ -2,7 +2,7 @@ const swaggerJSDoc = require('swagger-jsdoc');
 
 const options = {
   definition: {
-    openapi: '3.0.0',
+    swagger: '2.0',
     info: {
       title: 'Chinese order routes',
       version: '1.0.0',

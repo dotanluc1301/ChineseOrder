@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jasmine",
     "start": "nodemon index.js",
-    "dev": "gatsby develop -p $PORT"
+    "dev": "gatsby develop -p $PORT",
+    "swagger-autogen": "node ./swagger.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "jsonfile": "^6.1.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "swagger-autogen": "^2.18.7",
     "swagger-jsdoc": "6.1.0",
     "swagger-ui-express": "^4.3.0",
     "vercel": "^23.1.2"

@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const swaggerUi = require('swagger-ui-express');
+const path = require('path');
 
 // defining the Express app
 const app = express();
@@ -25,8 +26,8 @@ app.use('/api/tag', require('./src/routers/tag'));
 app.use('/api/shop',require('./src/routers/shop'));
 app.use('/api/channel', require('./src/routers/channel'));
 app.use('/',swaggerUi.serve,
-            swaggerUi.setup(require('./src/routers/swagger-doc'),{ explorer:true }));
-
+            //swaggerUi.setup(require('./src/routers/swagger-doc'),{ explorer:true }));
+            swaggerUi.setup(require('./swagger-output.json')));
 // starting the server
 app.listen(process.env.PORT || 3000, () => {
   console.log("Access to API by http://localhost:3000");

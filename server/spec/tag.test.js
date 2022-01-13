@@ -9,7 +9,7 @@ const request = require('supertest');
 const express = require('express');
 const app = express();
 
-describe('tag', function() {
+describe('tag-GET', function() {
   beforeEach(()=>{
     app.use(express.urlencoded({extended: false}));
     app.use('/',router);
@@ -73,4 +73,28 @@ describe('tag', function() {
                   done();
                 });
   })
-})
+});
+
+describe('tag-POST', function() {
+  beforeEach(()=>{
+    app.use(express.urlencoded({extended: false}));
+    app.use('/',router);
+  
+  })
+});
+
+describe('tag-PUT', function() {
+  beforeEach(()=>{
+    app.use(express.urlencoded({extended: false}));
+    app.use('/',router);
+  
+  })
+});
+
+describe('tag-DELETE', function() {
+  beforeEach(()=>{
+    app.use(express.urlencoded({extended: false}));
+    app.use('/',router);
+  
+  })
+});

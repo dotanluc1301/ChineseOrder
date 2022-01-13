@@ -26,8 +26,9 @@ app.use('/api/tag', require('./src/routers/tag'));
 app.use('/api/shop',require('./src/routers/shop'));
 app.use('/api/channel', require('./src/routers/channel'));
 app.use('/',swaggerUi.serve,
-            //swaggerUi.setup(require('./src/routers/swagger-doc'),{ explorer:true }));
-            swaggerUi.setup(require('./swagger-output.json')));
+            swaggerUi.setup(require('./swagger-doc')));
+            //swaggerUi.setup(require('./swagger-output.json')));
+
 // starting the server
 app.listen(process.env.PORT || 3000, () => {
   console.log("Access to API by http://localhost:3000");

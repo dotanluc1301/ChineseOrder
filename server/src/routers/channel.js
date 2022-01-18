@@ -9,7 +9,7 @@ const { getChannels, getChannel, addChannel, setChannel, deleteChannel } = requi
 
 /**
  * @swagger
- *  /channel:
+ *  /api/channel:
  *    get:
  *      tags:
  *      - Channel
@@ -36,7 +36,7 @@ router.get('/',async function(req,res,next){
 
 /**
  *  @swagger
- *  /channel/{channelName}:
+ *  /api/channel/{channelName}:
  *    get:
  *      tags:
  *      - Channel
@@ -80,7 +80,7 @@ router.get('/:channelName',getChannelValidation,validateResult,async function(re
 
 /**
  *  @swagger
- *  /channel/:
+ *  /api/channel/:
  *    post:
  *      tags:
  *      - Channel
@@ -122,7 +122,7 @@ router.post('/',addChannelValidation,validateResult,async function(req,res,next)
 
 /**
  *  @swagger
- *  /channel/:
+ *  /api/channel/:
  *    put:
  *      tags:
  *      - Channel
@@ -132,7 +132,7 @@ router.post('/',addChannelValidation,validateResult,async function(req,res,next)
  *        description: the channel name
  *        required: true
  *      - name: id
- *        in: body
+ *        in: path
  *        description: the channel id
  *        required: true
  *      summary:  Edit existing channel by given name
@@ -142,10 +142,10 @@ router.post('/',addChannelValidation,validateResult,async function(req,res,next)
  *          description: Success
  *          content: application/json
  */
-router.put('/',setChannelValidation,validateResult,async function(req,res,next){
+router.put('/:id',setChannelValidation,validateResult,async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
-    await setChannel(req.body.id, req.body.channelName);
+    await setChannel(req.params.id, req.body.channelName);
     res.status(200).send({                      
                           status: 'OK.',
                           error: ''
@@ -161,7 +161,7 @@ router.put('/',setChannelValidation,validateResult,async function(req,res,next){
 
 /**
  *  @swagger
- *  /channel/:
+ *  /api/channel/:
  *    delete:
  *      tags:
  *      - Channel

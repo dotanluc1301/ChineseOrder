@@ -9,7 +9,7 @@ const { getTags, getTag, addTag, setTag, deleteTag} = require('../db/tag');
 
 /**
  * @swagger
- *  /tag:
+ *  /api/tag:
  *    get:
  *      tags:
  *      - Tag
@@ -37,7 +37,7 @@ router.get('/',async function(req, res, next){
 
 /**
  *  @swagger
- *  /tag/{name}:
+ *  /api/tag/{name}:
  *    get:
  *      tags:
  *      - Tag
@@ -80,7 +80,7 @@ router.get('/:name', getTagValidation, validateResult, async function(req, res, 
 });
 /**
  *  @swagger
- *  /tag/:
+ *  /api/tag/:
  *    post:
  *      tags:
  *      - Tag
@@ -122,13 +122,13 @@ router.post('/',addTagValidation, validateResult,async function(req, res, next){
 
 /**
  *  @swagger
- *  /tag/:
+ *  /api/tag/:
  *    put:
  *      tags:
  *      - Tag
  *      parameters: 
  *      - name: id
- *        in: body
+ *        in: path
  *        description: the tag id
  *        required: true
  *      - name: name
@@ -145,7 +145,7 @@ router.post('/',addTagValidation, validateResult,async function(req, res, next){
 router.put('/',setTagValidation,validateResult,async function(req, res, next){
   res.set('Access-Control-Allow-Origin','*');
   try{
-    await setTag(req.body.id, req.body.name);
+    await setTag(req.params.id, req.body.name);
     res.status(200).send({ 
                           status: 'OK.',
                           error: ''
@@ -161,7 +161,7 @@ router.put('/',setTagValidation,validateResult,async function(req, res, next){
 
 /**
  *  @swagger
- *  /tag/:
+ *  /api/tag/:
  *    delete:
  *      tags:
  *      - Tag

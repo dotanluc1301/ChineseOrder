@@ -9,7 +9,7 @@ const { getShops, getShop, addShop, setShop, deleteShop} = require('../db/shop')
 
 /**
  * @swagger
- *  /shop:
+ *  /api/shop:
  *    get:
  *      tags:
  *      - Shop
@@ -37,7 +37,7 @@ router.get('/',async function(req,res,next){
 
 /**
  *  @swagger
- *  /shop/{name}:
+ *  /api/shop/{name}:
  *    get:
  *      tags:
  *      - Shop
@@ -81,7 +81,7 @@ router.get('/:name',getShopValidation,validateResult,async function(req,res,next
 
 /**
  *  @swagger
- *  /shop/:
+ *  /api/shop/:
  *    post:
  *      tags:
  *      - Shop
@@ -138,13 +138,13 @@ router.post('/',addShopValidation,validateResult,async function(req,res,next){
 
 /**
  *  @swagger
- *  /shop/:
+ *  /api/shop/:
  *    put:
  *      tags:
  *      - Shop
  *      parameters: 
  *      - name: id
- *        in: body
+ *        in: path
  *        description: the shop id
  *        required: true
  *      - name: name
@@ -173,7 +173,7 @@ router.post('/',addShopValidation,validateResult,async function(req,res,next){
 router.put('/', setShopValidation, validateResult, async function(req,res,next){
   res.set('Access-Control-Allow-Origin','*');
   try{
-    await setShop(req.body.id,
+    await setShop(req.params.id,
                   req.body.name,
                   req.body.url,
                   req.body.tags,
@@ -193,7 +193,7 @@ router.put('/', setShopValidation, validateResult, async function(req,res,next){
 
 /**
  *  @swagger
- *  /shop/:
+ *  /api/shop/:
  *    delete:
  *      tags:
  *      - Shop

@@ -4,7 +4,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const swaggerUi = require('swagger-ui-express');
-const path = require('path');
 
 // defining the Express app
 const app = express();
@@ -25,8 +24,8 @@ app.use(cors({ origin: true}));
 app.use('/api/tag', require('./src/routers/tag'));
 app.use('/api/shop',require('./src/routers/shop'));
 app.use('/api/channel', require('./src/routers/channel'));
-app.use('/',swaggerUi.serve,
-            swaggerUi.setup(require('./swagger-doc')));
+app.use('/',swaggerUi.serve);
+app.get('/',swaggerUi.setup(require('./swagger-doc')));
             //swaggerUi.setup(require('./swagger-output.json')));
 
 // starting the server
